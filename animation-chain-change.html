@@ -8,31 +8,22 @@
     <title>Loading Animation Cycle - Promises, Async Await</title>
 
     <style>
-        body {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-            width: 100vw;
-            height: 100vh;
-        }
-
-        .shape {
+        #shape {
             background-color: red;
             height: 128px;
             width: 128px;
             transition-property: background-color;
-            transition-duration: 3s;
+            transition-duration: .25s;
         }
 
-        .transition-animation-to-blue {
+        #shape:hover {
             background-color: blue;
         }
 
         .rotate-animation {
             animation-name: rotatorAnimation;
-            animation-duration: 3s;
+            animation-timing-function: linear;
+            animation-duration: .25s;
             animation-iteration-count: 1;
         }
 
@@ -45,23 +36,39 @@
 
             to,
             100% {
-                transform: rotate(360deg);
+                transform: rotate(90deg);
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="shape"></div>
+    <div id="shape"></div>
 
     <script>
-      document.onreadystatechange = () => {
-        
-        if (document.readyState) {
-            console.log(document.readyState);
+        document.onreadystatechange = () => {
+
+            if (document.readyState === 'complete') {
+
+                var element = document.getElementById('shape');
+
+                element.addEventListener('transitionend', transitionEnd, false);
+            }
+
+            function transitionEnd() {
+                console.log("transitionend");
+
+                element.classList.add('rotate-animation');
+
+                element.addEventListener('animationend', animationEnd, false);
+            }
+
+            function animationEnd() {
+                console.log("animationend");
+
+                element.classList.remove('rotate-animation');
+            }
         }
-        
-      }
     </script>
 </body>
 

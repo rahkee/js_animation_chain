@@ -1,62 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Loading Animation Cycle - Promises, Async Await</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Loading Animation Cycle - Promises, Async Await</title>
-
-    <style>
-        #shape {
-            background-color: red;
-            height: 128px;
-            width: 128px;
-            transition-property: background-color;
-            transition-duration: .25s;
-        }
-
-        #shape:hover {
-            background-color: blue;
-        }
-
-        .rotate-animation {
-            animation-name: rotatorAnimation;
-            animation-timing-function: linear;
-            animation-duration: .25s;
-            animation-iteration-count: 1;
-        }
-
-        @keyframes rotatorAnimation {
-
-            from,
-            0% {
-                transform: rotate(0);
+        <style>
+            #shape {
+                background-color: red;
+                height: 128px;
+                width: 128px;
+                transition-property: background-color;
+                transition-duration: 0.25s;
             }
 
-            to,
-            100% {
-                transform: rotate(90deg);
+            #shape:hover {
+                background-color: blue;
             }
-        }
-    </style>
-</head>
 
-<body>
-    <div id="shape"></div>
-
-    <script>
-        document.onreadystatechange = () => {
-
-            if (document.readyState === 'complete') {
-
-                var element = document.getElementById('shape');
-
-                element.addEventListener('transitionend', transitionEnd, false);
+            .rotate-animation {
+                animation-name: rotatorAnimation;
+                animation-timing-function: linear;
+                animation-duration: 0.25s;
+                animation-iteration-count: 1;
             }
+
+            @keyframes rotatorAnimation {
+                from,
+                0% {
+                    transform: rotate(0);
+                }
+
+                to,
+                100% {
+                    transform: rotate(90deg);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="shape"></div>
+
+        <script>
+            var element = document.getElementById('shape');
+
+            element.addEventListener('transitionend', transitionEnd, false);
 
             function transitionEnd() {
-                console.log("transitionend");
+                console.log('transitionend');
 
                 element.classList.add('rotate-animation');
 
@@ -64,12 +57,10 @@
             }
 
             function animationEnd() {
-                console.log("animationend");
+                console.log('animationend');
 
                 element.classList.remove('rotate-animation');
             }
-        }
-    </script>
-</body>
-
+        </script>
+    </body>
 </html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <style>
+        /* .transition {
+            transition-property: background-color;
+            transition-duration: 1s;
+            transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        .transition:hover {
+            background-color: red;
+        } */
+
+        .animation {
+            /* Animation EventListener fires after an iteration */
+
+            /* [duration] [timing-function] [delay] [iteration-count] [direction] [fill-mode] [play-state] [animation-name] */
+
+            animation: 2s 1 ease-in someRandomStarter,
+                2s 1 ease-out 2s andThenDoThis;
+
+            animation-fill-mode: both;
+        }
+
+        @keyframes someRandomStarter {
+            from {
+                background-color: blue;
+            }
+
+            to {
+                background-color: purple;
+            }
+        }
+
+        @keyframes andThenDoThis {
+            from {
+                border-radius: 0;
+            }
+
+            to {
+                border-radius: 100%;
+            }
+        }
+    </style>
+
+    <body>
+        <main>
+            <div class="item animation">Animation</div>
+            <div class="item transition">Transition</div>
+        </main>
+
+        <!--
+
+        GOAL:
+        1.) To be able to chain animations or transitions together
+        2.) For the function to be reusable. Single function that takes in parameters
+        3.) Indicate a number of times the animation or transition should happen before moving on
+
+        TEST CASES:
+        1.) Animation => Animation
+        2.) Animation => Transition
+        3.) Transition => Transition
+        4.) Transition => Animation
+
+        CSS Animation Events        CSS Transition Events
+        'animationstart'            'transitionstart'
+        'animationcancel'           'transitioncancel'
+        'animationend'              'transitionend'
+        'animationiteration'        'transitionrun'
+        -->
+
+        <script>
+            function animationTransitionHelper(event, target) {
+                // BUGGY - Does not play secondary animation
+                // target.classList.replace('start-animation', 'next-animation');
+            }
+
+            document.addEventListener('animationend', e => {
+                animationTransitionHelper(e.type, e.target);
+            });
+
+            document.addEventListener('transitionend', e => {
+                animationTransitionHelper(e.type, e.target);
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.item {
+    align-items: center;
+    background-color: blue;
+    color: white;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    margin: 20px;
+    width: 100px;
+}
